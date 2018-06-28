@@ -32,9 +32,15 @@ public class RestaurantController  {
 	
 	@PostMapping("/additem")
 	public Items addItem(@RequestBody Items item) {
-		Items item1=itemRepository.save(item);
+		// Items  item1=itemRepository.save(item);
+		if(restaurantRepoitory.findById(item.getRestaurantId()) != null) {
+		 Items  item1=itemRepository.save(item);
 		return item1;
+		 }
+		 else
+			 return null;
 	}
+		
 	
 	@PostMapping("/getRname")
 	public List<Restaurant> getRlist(){
